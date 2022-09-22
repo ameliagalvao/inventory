@@ -1,9 +1,6 @@
 package com.miigubymia.inventory.dataBase
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -27,4 +24,14 @@ class ArtisanViewModel(private val repository: InventoryRepository): ViewModel()
         repository.deleteAllArtisans()
     }
 
+}
+
+class ArtisanViewModelFactory(private var repository: InventoryRepository): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ArtisanViewModel::class.java)){
+            return ArtisanViewModel(repository) as T
+        }else{
+            throw IllegalArgumentException("unknown view model")
+        }
+    }
 }
