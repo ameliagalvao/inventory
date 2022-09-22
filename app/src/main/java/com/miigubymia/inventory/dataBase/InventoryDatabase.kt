@@ -8,7 +8,7 @@ import androidx.room.Room
 @Database(entities = [Artisan::class], version = 1)
 abstract class InventoryDatabase: RoomDatabase() {
 
-    abstract fun getRoomDao():RoomDAO
+    abstract fun getInventoryDao():InventoryDAO
 
     companion object{
         // o companion permite que a gente acesse essa variável de qualquer lugar do app
