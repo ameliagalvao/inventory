@@ -3,7 +3,7 @@ package com.miigubymia.inventory
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.miigubymia.inventory.artisans.RVArtisansActivity
+import com.miigubymia.inventory.artisans.ArtisansActivity
 import com.miigubymia.inventory.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         mainBinding.btnGoToArtisans.setOnClickListener {
-            val intent = Intent(this@MainActivity, RVArtisansActivity::class.java)
+            val intent = Intent(this@MainActivity, ArtisansActivity::class.java)
             startActivity(intent)
         }
 

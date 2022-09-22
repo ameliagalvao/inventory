@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.databinding.ActivityRvartisansBinding
 
-class RVArtisansActivity : AppCompatActivity() {
+class ArtisansActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRvartisansBinding
 
