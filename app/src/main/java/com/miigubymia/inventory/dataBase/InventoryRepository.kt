@@ -27,4 +27,9 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
         inventoryDAO.deleteAllArtisans()
     }
 
+    @WorkerThread
+    fun searchArtisan(searchQuery:String):Flow<List<Artisan>>{
+        return inventoryDAO.searchArtisan(searchQuery)
+    }
+
 }

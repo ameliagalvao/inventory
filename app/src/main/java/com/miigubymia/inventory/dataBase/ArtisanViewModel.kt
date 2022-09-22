@@ -24,6 +24,10 @@ class ArtisanViewModel(private val repository: InventoryRepository): ViewModel()
         repository.deleteAllArtisans()
     }
 
+    fun searchArtisan(searchQuery:String):LiveData<List<Artisan>>{
+        return repository.searchArtisan(searchQuery).asLiveData()
+    }
+
 }
 
 class ArtisanViewModelFactory(private var repository: InventoryRepository): ViewModelProvider.Factory{

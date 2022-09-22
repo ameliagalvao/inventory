@@ -21,4 +21,7 @@ interface InventoryDAO {
     @Query("DELETE FROM artisan_table")
     suspend fun deleteAllArtisans()
 
+    @Query("SELECT * FROM artisan_table WHERE artisanName LIKE :searchQuery")
+    fun searchArtisan(searchQuery:String): Flow<List<Artisan>>
+
 }

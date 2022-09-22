@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
 import com.miigubymia.inventory.dataBase.InventoryApplication
@@ -16,6 +15,7 @@ class RVArtisansActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRvartisansBinding
     lateinit var artisanViewModel: ArtisanViewModel
+    lateinit var artisanAdapter:ArtisanAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +26,44 @@ class RVArtisansActivity : AppCompatActivity() {
         val viewModelFactory = ArtisanViewModelFactory((application as InventoryApplication).repository)
         val recyclerView:RecyclerView = binding.artisiansListRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val artisanAdapter = ArtisanAdapter()
+        artisanAdapter = ArtisanAdapter()
         recyclerView.adapter = artisanAdapter
 
 
         artisanViewModel = ViewModelProvider(this, viewModelFactory).get(ArtisanViewModel::class.java)
+
         artisanViewModel.allArtisans.observe(this,Observer{artisans ->
             artisanAdapter.setArtisan(artisans)
         })
 
+        //SearchView
+        val searchView = binding.searchBarArtisan
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    searchArtisansInDatabase(query)
+                }
+                return true
+            }
+
+            //vai ser chamada sempre que digitarmos um caracter no view
+            override fun onQueryTextChange(query: String?): Boolean {
+                if(query != null){
+                    searchArtisansInDatabase(query)
+                }
+                return true
+            }
+        })
+
     }
+
+        private fun searchArtisansInDatabase(query:String){
+            val searchQuery = "%$query%"
+            artisanViewModel.searchArtisan(searchQuery).observe(this) { list ->
+                list.let {
+                    artisanAdapter.setArtisan(it)
+                }
+            }
+        }
+
 }
