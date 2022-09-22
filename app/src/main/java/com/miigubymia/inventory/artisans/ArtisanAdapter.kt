@@ -16,7 +16,6 @@ class ArtisanAdapter: RecyclerView.Adapter<ArtisanAdapter.ArtisanViewHolder>() {
 
     class ArtisanViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
         val textViewArtisanName:TextView = itemView.findViewById(R.id.tvArtisanName)
-        val textViewArtisanPix:TextView = itemView.findViewById(R.id.tvArtisanPix)
         val textViewArtisanSkills:TextView = itemView.findViewById(R.id.tvArtisanSkills)
         val imageViewArtisanPhoto:ImageView = itemView.findViewById(R.id.ivArtisanPhoto)
         val cardView:CardView = itemView.findViewById(R.id.artisanCardView)
@@ -32,8 +31,7 @@ class ArtisanAdapter: RecyclerView.Adapter<ArtisanAdapter.ArtisanViewHolder>() {
         var currentArtisan : Artisan = artisans[position]
 
         holder.textViewArtisanName.text = currentArtisan.artisanName
-        holder.textViewArtisanPix.text = currentArtisan.artisanPix
-        holder.textViewArtisanSkills.text = currentArtisan.artisanSkills
+        holder.textViewArtisanSkills.text = "Habilidades: " + currentArtisan.artisanSkills
         holder.imageViewArtisanPhoto.setImageResource(R.drawable.p1)
     }
 
