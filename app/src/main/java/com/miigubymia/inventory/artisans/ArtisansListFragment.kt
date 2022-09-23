@@ -1,5 +1,6 @@
 package com.miigubymia.inventory.artisans
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -62,7 +63,8 @@ class ArtisansListFragment : Fragment() {
 
         artisanAdapter.setOnArtisanClickListener(object : ArtisanAdapter.onArtisanClickListener {
             override fun onArtisanClick(position: Int) {
-                Toast.makeText(context, "Clicou", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, SingleArtisanActivity::class.java)
+                startActivity(intent)
             }
 
         })
