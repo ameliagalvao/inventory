@@ -1,5 +1,6 @@
 package com.miigubymia.inventory.dataBase
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -23,5 +24,8 @@ interface InventoryDAO {
 
     @Query("SELECT * FROM artisan_table WHERE artisanName LIKE :searchQuery")
     fun searchArtisan(searchQuery:String): Flow<List<Artisan>>
+
+    @Query("SELECT * FROM artisan_table WHERE id=:id")
+    fun getArtisanById(id:Int):LiveData<Artisan>
 
 }

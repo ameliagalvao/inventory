@@ -1,6 +1,7 @@
 package com.miigubymia.inventory.dataBase
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
 class InventoryRepository(private val inventoryDAO: InventoryDAO) {
@@ -30,6 +31,11 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
     @WorkerThread
     fun searchArtisan(searchQuery:String):Flow<List<Artisan>>{
         return inventoryDAO.searchArtisan(searchQuery)
+    }
+
+    @WorkerThread
+    fun getArtisanById(id:Int): LiveData<Artisan>{
+        return inventoryDAO.getArtisanById(id)
     }
 
 }
