@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
 import com.miigubymia.inventory.dataBase.InventoryApplication
-import com.miigubymia.inventory.databinding.FragmentSinglePageArtisanBinding
 import androidx.lifecycle.Observer
 
 class SinglePageArtisanFragment : Fragment() {
