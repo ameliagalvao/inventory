@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.miigubymia.inventory.R
+import com.miigubymia.inventory.dataBase.Artisan
 
 class AddArtisanFragment() : DialogFragment() {
 
@@ -55,8 +56,12 @@ class AddArtisanFragment() : DialogFragment() {
         btnRegisterArtisan.setOnClickListener {
             if (validation()) {
                 checkboxes()
+                val pixrbtn = getRadioBtn()
+                val artisanPix:String = pixrbtn + artisanPix.text.toString()
+                val artisan = Artisan(artisanName.text.toString(),artisanPix,artisanPhone.text.toString(),result)
                 dialog!!.dismiss()
-                Toast.makeText(context, "validado $result", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Artesão adicionado: ${artisan.artisanName}, ${artisan.artisanPix}, ${artisan.artisanPhone}," +
+                        "${artisan.artisanSkills}", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Preencha todos os itens", Toast.LENGTH_SHORT).show()
             }
@@ -75,6 +80,17 @@ class AddArtisanFragment() : DialogFragment() {
             else -> true
         }
         return result
+    }
+
+    private fun getRadioBtn():String{
+        var selectedBtn = ""
+        selectedBtn = when {
+            radioGroupPix.checkedRadioButtonId == 0 -> "Telefone: "
+            radioGroupPix.checkedRadioButtonId == 1 -> "CPF: "
+            radioGroupPix.checkedRadioButtonId == 2 -> "Email: "
+            else -> ""
+        }
+        return selectedBtn
     }
 
     fun checkboxes(): String {

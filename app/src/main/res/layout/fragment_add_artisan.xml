@@ -49,6 +49,7 @@
                     android:backgroundTint="#FFFFFF"
                     android:hint="Digite o nome do artesão..."
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textColorHighlight="@color/black"
                     android:textColorHint="@color/black"
                     android:textColorLink="@color/black"
