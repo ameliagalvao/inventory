@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
 import com.miigubymia.inventory.dataBase.InventoryApplication
 import androidx.lifecycle.Observer
+import com.miigubymia.inventory.dataBase.Artisan
 
 class SinglePageArtisanFragment : Fragment() {
 
@@ -32,8 +34,9 @@ class SinglePageArtisanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_single_page_artisan, container, false)
-        var clickedArtisanId = activity?.intent?.getIntExtra("clickedArtisanId", 0)
-
+        var clickedArtisan = activity?.intent?.getSerializableExtra("clickedArtisan") as Artisan
+        val textView = view.findViewById<TextView>(R.id.tvSingleArtisanName)
+        textView.text = clickedArtisan.artisanName
         return view
     }
 
