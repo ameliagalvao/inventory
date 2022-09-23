@@ -188,11 +188,12 @@
                         android:textColor="@color/white" />
 
                     <CheckBox
-                        android:id="@+id/checkBox5"
+                        android:id="@+id/cbSew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Costura"
                         android:textColor="@color/white" />
+
                 </TableRow>
 
             </TableLayout>

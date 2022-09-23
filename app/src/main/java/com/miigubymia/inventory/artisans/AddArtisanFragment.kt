@@ -15,6 +15,13 @@ class AddArtisanFragment() : DialogFragment() {
     lateinit var artisanName: EditText
     lateinit var artisanPhone: EditText
     lateinit var artisanPix: EditText
+    lateinit var cbAmigurumi: CheckBox
+    lateinit var cbCostura: CheckBox
+    lateinit var cbCroche: CheckBox
+    lateinit var cbMacrame: CheckBox
+    lateinit var cbSergio: CheckBox
+    lateinit var cbTecelagem: CheckBox
+    var result = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +41,22 @@ class AddArtisanFragment() : DialogFragment() {
             dialog!!.dismiss()
         }
 
+        //checkBoxes
+        cbAmigurumi = view.findViewById(R.id.cbAmigurumi)
+        cbCroche = view.findViewById(R.id.cbCroche)
+        cbMacrame = view.findViewById(R.id.cbMacrame)
+        cbSergio = view.findViewById(R.id.cbSergio)
+        cbCostura = view.findViewById(R.id.cbSew)
+        cbTecelagem = view.findViewById(R.id.cbTecelagem)
+
         //botão para salvar dados
         val btnRegisterArtisan = view.findViewById<Button>(R.id.btnregisterNewArtisan)
         radioGroupPix = view.findViewById<RadioGroup>(R.id.radioGroupPix)
         btnRegisterArtisan.setOnClickListener {
             if (validation()) {
-                Toast.makeText(context, "validado", Toast.LENGTH_SHORT).show()
+                checkboxes()
+                dialog!!.dismiss()
+                Toast.makeText(context, "validado $result", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Preencha todos os itens", Toast.LENGTH_SHORT).show()
             }
@@ -59,31 +76,14 @@ class AddArtisanFragment() : DialogFragment() {
         }
         return result
     }
+
+    fun checkboxes(): String {
+            if (cbCroche.isChecked) result += "Croche "
+            if (cbMacrame.isChecked) result += "Macrame "
+            if (cbTecelagem.isChecked) result += "Tecelagem "
+            if (cbCostura.isChecked) result += "Costura "
+            if (cbSergio.isChecked) result += "Sergio Matos "
+            if (cbAmigurumi.isChecked) result += "Amigurumi"
+        return result
+    }
 }
-
-
-/*
-
-// checkboxes
-    lateinit var cbAmigurumi: CheckBox
-    lateinit var cbCroche: CheckBox
-    lateinit var cbMacrame: CheckBox
-    lateinit var cbSergio: CheckBox
-    lateinit var cbCostura: CheckBox
-    lateinit var cbTecelagem: CheckBox
-
-        cbAmigurumi = view.findViewById(R.id.cbAmigurumi)
-        cbCroche = view.findViewById(R.id.cbCroche)
-        cbMacrame = view.findViewById(R.id.cbMacrame)
-        cbSergio = view.findViewById(R.id.cbSergio)
-        cbCostura = view.findViewById(R.id.cbCostura)
-        cbTecelagem = view.findViewById(R.id.cbTecelagem)
-
-        cbAmigurumi.isChecked -> cbAmigurumi.text = "Amigurumi"
-        cbCroche.isChecked ->  cbCroche.text = "Croche"
-        cbMacrame.isChecked -> cbMacrame.text = "Macrame"
-        cbTecelagem.isChecked -> cbTecelagem.text = "Tecelagem"
-        cbCostura.isChecked -> cbCostura.text = "Costura"
-        cbSergio.isChecked -> cbSergio.text = "Sergio Matos"
-
- */
