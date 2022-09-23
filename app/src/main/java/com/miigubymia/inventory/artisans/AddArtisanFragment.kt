@@ -101,10 +101,10 @@ class AddArtisanFragment() : DialogFragment() {
 
     private fun getRadioBtn():String{
         var selectedBtn = ""
-        selectedBtn = when {
-            radioGroupPix.checkedRadioButtonId == 0 -> "Telefone: "
-            radioGroupPix.checkedRadioButtonId == 1 -> "CPF: "
-            radioGroupPix.checkedRadioButtonId == 2 -> "Email: "
+        when(radioGroupPix.checkedRadioButtonId){
+            R.id.rbtnPhone -> selectedBtn = "Telefone: "
+            R.id.rbtnCPF -> selectedBtn = "CPF: "
+            R.id.rbtnEmail -> selectedBtn = "Email: "
             else -> ""
         }
         return selectedBtn
