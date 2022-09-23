@@ -14,17 +14,32 @@ class ArtisanAdapter: RecyclerView.Adapter<ArtisanAdapter.ArtisanViewHolder>() {
 
     var artisans: List<Artisan> = ArrayList()
 
-    class ArtisanViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
+    //Clicável
+    private lateinit var artisanListener: onArtisanClickListener
+    interface onArtisanClickListener{
+        fun onArtisanClick(position:Int)
+    }
+    fun setOnArtisanClickListener(listener: onArtisanClickListener){
+        artisanListener = listener
+    }
+
+    class ArtisanViewHolder (itemView: View, listener: onArtisanClickListener):RecyclerView.ViewHolder(itemView){
         val textViewArtisanName:TextView = itemView.findViewById(R.id.tvArtisanName)
         val textViewArtisanSkills:TextView = itemView.findViewById(R.id.tvArtisanSkills)
         val imageViewArtisanPhoto:ImageView = itemView.findViewById(R.id.ivArtisanPhoto)
         val cardView:CardView = itemView.findViewById(R.id.artisanCardView)
+        //clicavel
+        init {
+            itemView.setOnClickListener {
+                listener.onArtisanClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtisanViewHolder {
         val view:View = LayoutInflater.from(parent.context)
             .inflate(R.layout.artisan_card,parent,false)
-        return ArtisanViewHolder(view)
+        return ArtisanViewHolder(view, artisanListener)
     }
 
     override fun onBindViewHolder(holder: ArtisanViewHolder, position: Int) {
