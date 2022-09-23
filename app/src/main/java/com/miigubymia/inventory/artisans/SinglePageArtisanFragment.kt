@@ -34,9 +34,15 @@ class SinglePageArtisanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_single_page_artisan, container, false)
-        var clickedArtisan = activity?.intent?.getSerializableExtra("clickedArtisan") as Artisan
-        val textView = view.findViewById<TextView>(R.id.tvSingleArtisanName)
-        textView.text = clickedArtisan.artisanName
+        var currentArtisan = activity?.intent?.getSerializableExtra("clickedArtisan") as Artisan
+        val nameTextView = view.findViewById<TextView>(R.id.tvSingleArtisanName)
+        val pixTextView = view.findViewById<TextView>(R.id.tvSinglePixToFill)
+        val phoneTextView = view.findViewById<TextView>(R.id.tvSinglePhoneToFill)
+        val skillsTextView = view.findViewById<TextView>(R.id.tvSingleSkillsToFill)
+        nameTextView.text = currentArtisan.artisanName
+        pixTextView.text = currentArtisan.artisanPix
+        phoneTextView.text = currentArtisan.artisanPhone
+        skillsTextView.text = currentArtisan.artisanSkills
         return view
     }
 
