@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/drawable/bg_round.xml" value="0.16" />
+        <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.154" />
+        <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/activity_artisans.xml" value="0.2" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/activity_rvartisans.xml" value="0.2359375" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/artisan_card.xml" value="0.4" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/card_design.xml" value="0.2078125" />
+        <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/fragment_add_artisan.xml" value="0.2" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/fragment_artisan_list.xml" value="0.25" />
         <entry key="..\:/Users/aninh/AndroidStudioProjects/Inventory/app/src/main/res/layout/fragment_artisans_list.xml" value="0.1375" />
       </map>
