@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Inventory"
         tools:targetApi="31">
         <activity
+            android:name=".SingleArtisanActivity"
+            android:exported="false" />
+        <activity
             android:name=".artisans.ArtisansActivity"
             android:exported="false" />
         <activity
