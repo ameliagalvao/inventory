@@ -7,8 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.Artisan
+import com.miigubymia.inventory.dataBase.ArtisanViewModel
+import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
+import com.miigubymia.inventory.dataBase.InventoryApplication
+import androidx.lifecycle.Observer
 
 class AddArtisanFragment() : DialogFragment() {
 
@@ -23,6 +28,18 @@ class AddArtisanFragment() : DialogFragment() {
     lateinit var cbSergio: CheckBox
     lateinit var cbTecelagem: CheckBox
     var result = ""
+    lateinit var artisanViewModel: ArtisanViewModel
+    lateinit var artisanAdapter:ArtisanAdapter
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        artisanAdapter = ArtisanAdapter()
+        val viewModelFactory = ArtisanViewModelFactory((activity?.applicationContext as InventoryApplication).repository)
+        artisanViewModel = ViewModelProvider(this, viewModelFactory).get(ArtisanViewModel::class.java)
+        artisanViewModel.allArtisans.observe(viewLifecycleOwner,Observer{artisans ->
+            artisanAdapter.setArtisan(artisans)
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,11 +76,11 @@ class AddArtisanFragment() : DialogFragment() {
                 val pixrbtn = getRadioBtn()
                 val artisanPix:String = pixrbtn + artisanPix.text.toString()
                 val artisan = Artisan(artisanName.text.toString(),artisanPix,artisanPhone.text.toString(),result)
+                artisanViewModel.insertArtisan(artisan)
                 dialog!!.dismiss()
-                Toast.makeText(context, "Artesão adicionado: ${artisan.artisanName}, ${artisan.artisanPix}, ${artisan.artisanPhone}," +
-                        "${artisan.artisanSkills}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Artesão adicionado com sucesso.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Preencha todos os itens", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Por favor, preencha todos os itens", Toast.LENGTH_SHORT).show()
             }
         }
 
