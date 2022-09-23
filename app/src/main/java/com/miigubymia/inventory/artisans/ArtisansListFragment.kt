@@ -63,7 +63,10 @@ class ArtisansListFragment : Fragment() {
 
         artisanAdapter.setOnArtisanClickListener(object : ArtisanAdapter.onArtisanClickListener {
             override fun onArtisanClick(position: Int) {
+                val clickedId = artisanAdapter.artisans[position].id
                 val intent = Intent(context, SingleArtisanActivity::class.java)
+                Toast.makeText(context, "$clickedId", Toast.LENGTH_SHORT).show()
+                intent.putExtra("clickedArtisanId", clickedId)
                 startActivity(intent)
             }
 
