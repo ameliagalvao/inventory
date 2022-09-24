@@ -56,6 +56,7 @@ class SinglePageArtisanFragment : Fragment() {
             dialogBuilder?.setMessage("Tem certeza que deseja excluir?")
             dialogBuilder?.setPositiveButton("Excluir") { dialog, whichButton ->
                 requireActivity().onBackPressed()
+                artisanViewModel.deleteArtisan(currentArtisan)
                 Toast.makeText(context, "Artesão Excluído", Toast.LENGTH_SHORT).show()
             }
             dialogBuilder?.setNegativeButton("Cancelar") { dialog, whichButton ->
