@@ -41,13 +41,11 @@ class SinglePageArtisanFragment : Fragment() {
 
         val nameTextView = view.findViewById<TextView>(R.id.tvSingleArtisanName)
         val pixTextView = view.findViewById<TextView>(R.id.tvSinglePixToFill)
-        val phoneTextView = view.findViewById<TextView>(R.id.tvSinglePhoneToFill)
         val skillsTextView = view.findViewById<TextView>(R.id.tvSingleSkillsToFill)
         val deletebtn = view.findViewById<Button>(R.id.btnSingleDelete)
 
         nameTextView.text = currentArtisan.artisanName
         pixTextView.text = currentArtisan.artisanPix
-        phoneTextView.text = currentArtisan.artisanPhone
         skillsTextView.text = currentArtisan.artisanSkills
 
         deletebtn.setOnClickListener {
