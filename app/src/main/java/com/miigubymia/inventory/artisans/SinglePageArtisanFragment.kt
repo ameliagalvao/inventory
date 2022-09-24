@@ -1,9 +1,7 @@
 package com.miigubymia.inventory.artisans
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -55,13 +53,6 @@ class SinglePageArtisanFragment : Fragment() {
         pixTextView.text = currentArtisan.artisanPix
         skillsTextView.text = currentArtisan.artisanSkills
 
-/*
-        contactbtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", currentArtisan.artisanPhone, null));
-            startActivity(intent)
-        }
-
-*/
         contactbtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL).apply {
                 data = Uri.parse("tel:${currentArtisan.artisanPhone}")
@@ -69,38 +60,26 @@ class SinglePageArtisanFragment : Fragment() {
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(context, "Aplicativo não encontrado.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,getString(R.string.appNotFound), Toast.LENGTH_SHORT).show()
             }
         }
 
         deletebtn.setOnClickListener {
             val dialogBuilder = context?.let { it1 -> AlertDialog.Builder(it1) }
-            dialogBuilder?.setTitle("Excluir Artesão")
-            dialogBuilder?.setMessage("Tem certeza que deseja excluir?")
-            dialogBuilder?.setPositiveButton("Excluir") { dialog, whichButton ->
+            dialogBuilder?.setTitle(getString(R.string.deleteArtisan))
+            dialogBuilder?.setMessage(getString(R.string.areYouSure))
+            dialogBuilder?.setPositiveButton(getString(R.string.btnDelete)) { dialog, whichButton ->
                 requireActivity().onBackPressed()
                 artisanViewModel.deleteArtisan(currentArtisan)
-                Toast.makeText(context, "Artesão Excluído", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.deleted), Toast.LENGTH_SHORT).show()
             }
-            dialogBuilder?.setNegativeButton("Cancelar") { dialog, whichButton ->
+            dialogBuilder?.setNegativeButton(getString(R.string.cancel)) { dialog, whichButton ->
                 dialog.cancel()
             }
             dialogBuilder?.create()?.show()
         }
 
         return view
-    }
-
-    fun isIntentAvailable(context: Context, action: String?): Boolean {
-        val packageManager: PackageManager = context.packageManager
-        val intent = Intent(action)
-        val resolveInfo: List<*> = packageManager.queryIntentActivities(
-            intent,
-            PackageManager.MATCH_DEFAULT_ONLY
-        )
-        return if (resolveInfo.size > 0) {
-            true
-        } else false
     }
 
 }

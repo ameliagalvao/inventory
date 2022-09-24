@@ -30,4 +30,8 @@
     <string name="production">Produção</string>
     <string name="addsucess">Artesão adicionado com sucesso.</string>
     <string name="fillAll">Por favor, preencha todos os itens</string>
+    <string name="appNotFound">Aplicativo não encontrado.</string>
+    <string name="deleteArtisan">Excluir Artesão</string>
+    <string name="areYouSure">Tem certeza que deseja excluir?</string>
+    <string name="deleted">Artesão Excluído.</string>
 </resources>
