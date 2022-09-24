@@ -1,9 +1,11 @@
 package com.miigubymia.inventory.artisans
 
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +13,15 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
+import com.miigubymia.inventory.dataBase.Artisan
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
 import com.miigubymia.inventory.dataBase.InventoryApplication
-import androidx.lifecycle.Observer
-import com.miigubymia.inventory.dataBase.Artisan
+
 
 class SinglePageArtisanFragment : Fragment() {
 
@@ -51,12 +55,21 @@ class SinglePageArtisanFragment : Fragment() {
         pixTextView.text = currentArtisan.artisanPix
         skillsTextView.text = currentArtisan.artisanSkills
 
+/*
+        contactbtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", currentArtisan.artisanPhone, null));
+            startActivity(intent)
+        }
+
+*/
         contactbtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL).apply {
                 data = Uri.parse("tel:${currentArtisan.artisanPhone}")
             }
-            if (intent != null) {
+            try {
                 startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context, "Aplicativo não encontrado.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -76,6 +89,18 @@ class SinglePageArtisanFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun isIntentAvailable(context: Context, action: String?): Boolean {
+        val packageManager: PackageManager = context.packageManager
+        val intent = Intent(action)
+        val resolveInfo: List<*> = packageManager.queryIntentActivities(
+            intent,
+            PackageManager.MATCH_DEFAULT_ONLY
+        )
+        return if (resolveInfo.size > 0) {
+            true
+        } else false
     }
 
 }
