@@ -22,8 +22,7 @@
             android:background="@drawable/bg_round"
             app:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent"
-            app:queryHint="Buscar artesão"
-            />
+            app:queryHint="@string/hintSearchArtisan" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvArtisansListFragment"

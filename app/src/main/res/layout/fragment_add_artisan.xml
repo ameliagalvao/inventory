@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/addArtisanTitle"
+                android:text="@string/addNewArtisan"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -47,7 +47,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/bg_round"
                     android:backgroundTint="#FFFFFF"
-                    android:hint="Digite o nome do artesão..."
+                    android:hint="@string/hintArtisanName"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/black"
@@ -71,7 +71,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/bg_round"
                     android:backgroundTint="#FFFFFF"
-                    android:hint="Digite o número do WhattsApp..."
+                    android:hint="@string/hintArtisanPhone"
                     android:inputType="phone"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/black"
@@ -91,7 +91,7 @@
                     android:id="@+id/tvTitlePix"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pix"
+                    android:text="@string/pix"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -112,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text="Telefone"
+                        android:text="@string/phone"
                         android:textColor="@color/black" />
 
                     <RadioButton
@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text="CPF"
+                        android:text="@string/cpf"
                         android:textColor="@color/black" />
 
                     <RadioButton
@@ -128,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text="E-mail"
+                        android:text="@string/email"
                         android:textColor="@color/black" />
 
                 </RadioGroup>
@@ -150,7 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:backgroundTint="@android:color/transparent"
-                        android:hint="Digite o PIX..."
+                        android:hint="@string/hintArtisanPix"
                         android:textColor="@color/black"
                         android:textColorHighlight="@color/black"
                         android:textColorHint="@color/black"
@@ -174,7 +174,7 @@
                         android:id="@+id/tvTitleSkills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Habilidades"
+                        android:text="@string/skill"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
@@ -189,21 +189,21 @@
                         android:id="@+id/cbCroche"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Crochê"
+                        android:text="@string/crochet"
                         android:textColor="@color/black" />
 
                     <CheckBox
                         android:id="@+id/cbAmigurumi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Amigurumi"
+                        android:text="@string/amigurumi"
                         android:textColor="@color/black" />
 
                     <CheckBox
                         android:id="@+id/cbMacrame"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Macramê"
+                        android:text="@string/macrame"
                         android:textColor="@color/black" />
                 </TableRow>
 
@@ -215,21 +215,21 @@
                         android:id="@+id/cbTecelagem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tecelagem"
+                        android:text="@string/tecelagem"
                         android:textColor="@color/black" />
 
                     <CheckBox
                         android:id="@+id/cbSergio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sérgio Matos"
+                        android:text="@string/sergioMatos"
                         android:textColor="@color/black" />
 
                     <CheckBox
                         android:id="@+id/cbSew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Costura"
+                        android:text="@string/sewing"
                         android:textColor="@color/black" />
 
                 </TableRow>
@@ -249,7 +249,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:backgroundTint="#ACE1E0"
-                    android:text="Cancelar"
+                    android:text="@string/cancel"
                     android:textColor="@color/teal_700"
                     android:textSize="14sp"
                     app:cornerRadius="20dp" />
@@ -261,7 +261,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="3"
                     android:backgroundTint="#F44336"
-                    android:text="Registrar"
+                    android:text="@string/register"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="20sp"

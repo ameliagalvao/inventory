@@ -1,6 +1,30 @@
 <resources>
     <string name="app_name">Inventory</string>
-    <string name="addArtisanTitle">Adicionar Novo Artesão</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="NomeDoProjeto">Nome do Projeto</string>
+    <string name="artisans">Artesãos</string>
+    <string name="products">Produtos</string>
+    <string name="addNewArtisan">Adicionar Novo Artesão</string>
+    <string name="pix">Pix</string>
+    <string name="skill">Habilidades</string>
+    <string name="phone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="crochet">Crochê</string>
+    <string name="sewing">Costura</string>
+    <string name="macrame">Macramê</string>
+    <string name="tecelagem">Tecelagem</string>
+    <string name="sergioMatos">Sérgio Matos</string>
+    <string name="amigurumi">Amigurumi</string>
+    <string name="register">Registrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="hintArtisanName">Digite o nome do artesão...</string>
+    <string name="hintArtisanPhone">Digite o número do WhattsApp...</string>
+    <string name="hintArtisanPix">Digite o PIX...</string>
+    <string name="hintSearchArtisan">Buscar artesão...</string>
+    <string name="name">Nome</string>
+    <string name="singlepix">Pix:</string>
+    <string name="singleSkills">Habilidades:</string>
+    <string name="btnContact">Contato</string>
+    <string name="btnDelete">Excluir</string>
+    <string name="btnEdit">Editar</string>
+    <string name="production">Produção</string>
 </resources>
