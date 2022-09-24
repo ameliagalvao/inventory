@@ -52,8 +52,12 @@ class SinglePageArtisanFragment : Fragment() {
         skillsTextView.text = currentArtisan.artisanSkills
 
         contactbtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", currentArtisan.artisanPhone, null));
-            startActivity(intent)
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:${currentArtisan.artisanPhone}")
+            }
+            if (intent != null) {
+                startActivity(intent)
+            }
         }
 
         deletebtn.setOnClickListener {
