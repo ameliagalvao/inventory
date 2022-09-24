@@ -5,6 +5,7 @@
     <string name="products">Produtos</string>
     <string name="addNewArtisan">Adicionar Novo Artesão</string>
     <string name="pix">Pix</string>
+    <string name="cpf">CPF</string>
     <string name="skill">Habilidades</string>
     <string name="phone">Telefone</string>
     <string name="email">E-mail</string>
@@ -27,4 +28,6 @@
     <string name="btnDelete">Excluir</string>
     <string name="btnEdit">Editar</string>
     <string name="production">Produção</string>
+    <string name="addsucess">Artesão adicionado com sucesso.</string>
+    <string name="fillAll">Por favor, preencha todos os itens</string>
 </resources>

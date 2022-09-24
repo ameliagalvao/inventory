@@ -78,9 +78,9 @@ class AddArtisanFragment() : DialogFragment() {
                 val artisan = Artisan(artisanName.text.toString(),artisanPix,artisanPhone.text.toString(),result)
                 artisanViewModel.insertArtisan(artisan)
                 dialog!!.dismiss()
-                Toast.makeText(context, "Artesão adicionado com sucesso.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.addsucess), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Por favor, preencha todos os itens", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.fillAll), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -102,21 +102,21 @@ class AddArtisanFragment() : DialogFragment() {
     private fun getRadioBtn():String{
         var selectedBtn = ""
         when(radioGroupPix.checkedRadioButtonId){
-            R.id.rbtnPhone -> selectedBtn = "Telefone: "
-            R.id.rbtnCPF -> selectedBtn = "CPF: "
-            R.id.rbtnEmail -> selectedBtn = "Email: "
+            R.id.rbtnPhone -> selectedBtn = "${getString(R.string.phone)}: "
+            R.id.rbtnCPF -> selectedBtn = "${getString(R.string.cpf)}: "
+            R.id.rbtnEmail -> selectedBtn = "${getString(R.string.email)}: "
             else -> ""
         }
         return selectedBtn
     }
 
     fun checkboxes(): String {
-            if (cbCroche.isChecked) result += "Croche "
-            if (cbMacrame.isChecked) result += "Macrame "
-            if (cbTecelagem.isChecked) result += "Tecelagem "
-            if (cbCostura.isChecked) result += "Costura "
-            if (cbSergio.isChecked) result += "Sergio Matos "
-            if (cbAmigurumi.isChecked) result += "Amigurumi"
+            if (cbCroche.isChecked) result += "${getString(R.string.crochet)} "
+            if (cbMacrame.isChecked) result += "${getString(R.string.macrame)} "
+            if (cbTecelagem.isChecked) result += "${getString(R.string.tecelagem)} "
+            if (cbCostura.isChecked) result += "${getString(R.string.sewing)} "
+            if (cbSergio.isChecked) result += "${getString(R.string.sergioMatos)} "
+            if (cbAmigurumi.isChecked) result += "${getString(R.string.amigurumi)} "
         return result
     }
 }
