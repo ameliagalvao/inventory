@@ -1,5 +1,7 @@
 package com.miigubymia.inventory.artisans
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,10 +45,16 @@ class SinglePageArtisanFragment : Fragment() {
         val pixTextView = view.findViewById<TextView>(R.id.tvSinglePixToFill)
         val skillsTextView = view.findViewById<TextView>(R.id.tvSingleSkillsToFill)
         val deletebtn = view.findViewById<Button>(R.id.btnSingleDelete)
+        val contactbtn = view.findViewById<Button>(R.id.btnPhoneSingle)
 
         nameTextView.text = currentArtisan.artisanName
         pixTextView.text = currentArtisan.artisanPix
         skillsTextView.text = currentArtisan.artisanSkills
+
+        contactbtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", currentArtisan.artisanPhone, null));
+            startActivity(intent)
+        }
 
         deletebtn.setOnClickListener {
             val dialogBuilder = context?.let { it1 -> AlertDialog.Builder(it1) }
