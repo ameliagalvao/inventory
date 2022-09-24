@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
@@ -50,8 +51,17 @@ class SinglePageArtisanFragment : Fragment() {
         skillsTextView.text = currentArtisan.artisanSkills
 
         deletebtn.setOnClickListener {
-            requireActivity().onBackPressed()
-            Toast.makeText(context, "Artesão Excluído", Toast.LENGTH_SHORT).show()
+            val dialogBuilder = context?.let { it1 -> AlertDialog.Builder(it1) }
+            dialogBuilder?.setTitle("Excluir Artesão")
+            dialogBuilder?.setMessage("Tem certeza que deseja excluir?")
+            dialogBuilder?.setPositiveButton("Excluir") { dialog, whichButton ->
+                requireActivity().onBackPressed()
+                Toast.makeText(context, "Artesão Excluído", Toast.LENGTH_SHORT).show()
+            }
+            dialogBuilder?.setNegativeButton("Cancelar") { dialog, whichButton ->
+                dialog.cancel()
+            }
+            dialogBuilder?.create()?.show()
         }
 
         return view
