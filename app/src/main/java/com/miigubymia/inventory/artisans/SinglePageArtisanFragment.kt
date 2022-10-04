@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
@@ -48,6 +49,7 @@ class SinglePageArtisanFragment : Fragment() {
         val skillsTextView = view.findViewById<TextView>(R.id.tvSingleSkillsToFill)
         val deletebtn = view.findViewById<Button>(R.id.btnSingleDelete)
         val contactbtn = view.findViewById<Button>(R.id.btnPhoneSingle)
+        val editbtn = view.findViewById<Button>(R.id.btnSingleEdit)
 
         nameTextView.text = currentArtisan.artisanName
         pixTextView.text = currentArtisan.artisanPix
@@ -77,6 +79,14 @@ class SinglePageArtisanFragment : Fragment() {
                 dialog.cancel()
             }
             dialogBuilder?.create()?.show()
+        }
+
+        editbtn.setOnClickListener {
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val dialogFragment = EditSingleArtisanFragment()
+            dialogFragment.isCancelable = false
+            //Para o dialog não usamos o transaction
+            dialogFragment.show(fragmentManager, "EditSingleArtisan")
         }
 
         return view
