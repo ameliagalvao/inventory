@@ -250,7 +250,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_round"
                     android:backgroundTint="@color/white"
-                    android:hint="Digite o nome..."
                     android:textColor="#373737"
                     android:textColorHighlight="#373737"
                     android:textColorHint="#373737" />
@@ -278,7 +277,6 @@
                     android:backgroundTint="@color/white"
                     android:drawableLeft="@drawable/ic_baseline_phone_android_24"
                     android:drawablePadding="10dp"
-                    android:hint="Digite o telefone..."
                     android:inputType="phone"
                     android:textColor="#373737"
                     android:textColorHighlight="#373737"

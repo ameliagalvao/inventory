@@ -1,6 +1,7 @@
 package com.miigubymia.inventory.artisans
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,10 @@ class EditSingleArtisanFragment : DialogFragment() {
     lateinit var cbEditMacrame: CheckBox
     lateinit var cbEditSergio: CheckBox
     lateinit var cbEditTecelagem: CheckBox
+    var result = ""
+    lateinit var editTextPhone:EditText
+    lateinit var editTextName:EditText
+    lateinit var editTextPix:EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +36,15 @@ class EditSingleArtisanFragment : DialogFragment() {
         val cancelbtn = view.findViewById<Button>(R.id.btnCancelEdit)
         val confirmbtn = view.findViewById<Button>(R.id.btnEditConfirm)
 
-        val editTextName = view.findViewById<EditText>(R.id.etNameEdit)
-        editTextName.setHint(currentArtisan.artisanName)
+        editTextName = view.findViewById<EditText>(R.id.etNameEdit)
+        editTextName.setText(currentArtisan.artisanName)
 
-        val editTextPhone = view.findViewById<EditText>(R.id.etEditPhone)
-        editTextPhone.setHint(currentArtisan.artisanPhone)
+        editTextPhone = view.findViewById<EditText>(R.id.etEditPhone)
+        editTextPhone.setText(currentArtisan.artisanPhone)
 
-        val editTextPix = view.findViewById<EditText>(R.id.etEditArtisanPix)
+        editTextPix = view.findViewById<EditText>(R.id.etEditArtisanPix)
         val pixWithoutRadioBtn = currentArtisan.artisanPix.substringAfterLast(' ')
-        editTextPix.setHint(pixWithoutRadioBtn)
+        editTextPix.setText(pixWithoutRadioBtn)
 
         radioGroupEdit = view.findViewById(R.id.radioGroupEditPix)
         checkPixOption(currentArtisan.artisanPix)
@@ -60,7 +65,15 @@ class EditSingleArtisanFragment : DialogFragment() {
         }
 
         confirmbtn.setOnClickListener {
-            Toast.makeText(context, "Alterado", Toast.LENGTH_SHORT).show()
+            if (validation()) {
+                checkboxes()
+                val pixrbtn = getRadioBtn()
+                val artisanPix:String = pixrbtn + editTextPix.text.toString()
+                val artisan = Artisan(editTextName.text.toString(),artisanPix,editTextPhone.text.toString(),result)
+                Toast.makeText(context, "${artisan.artisanName}, ${artisan.artisanPix}, ${artisan.artisanPhone}, ${artisan.artisanSkills}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, getString(R.string.fillAll), Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
@@ -94,6 +107,39 @@ class EditSingleArtisanFragment : DialogFragment() {
         if (skill.contains("Crochê")) {
             cbEditCroche.isChecked = true
         }
+    }
+
+    private fun validation(): Boolean {
+        var result = false
+        result = when {
+            radioGroupEdit.checkedRadioButtonId == -1 -> false
+            TextUtils.isEmpty(editTextName.text.toString()) -> false
+            TextUtils.isEmpty(editTextPhone.text.toString()) -> false
+            TextUtils.isEmpty(editTextPix.text.toString()) -> false
+            else -> true
+        }
+        return result
+    }
+
+    private fun getRadioBtn():String{
+        var selectedBtn = ""
+        when(radioGroupEdit.checkedRadioButtonId){
+            R.id.rbtnEditPhone -> selectedBtn = "${getString(R.string.phone)}: "
+            R.id.rbtnEditCPF -> selectedBtn = "${getString(R.string.cpf)}: "
+            R.id.rbtnEditEmail -> selectedBtn = "${getString(R.string.email)}: "
+            else -> ""
+        }
+        return selectedBtn
+    }
+
+    fun checkboxes(): String {
+        if (cbEditCroche.isChecked) result += "${getString(R.string.crochet)} "
+        if (cbEditMacrame.isChecked) result += "${getString(R.string.macrame)} "
+        if (cbEditTecelagem.isChecked) result += "${getString(R.string.tecelagem)} "
+        if (cbEditCostura.isChecked) result += "${getString(R.string.sewing)} "
+        if (cbEditSergio.isChecked) result += "${getString(R.string.sergioMatos)} "
+        if (cbEditAmigurumi.isChecked) result += "${getString(R.string.amigurumi)} "
+        return result
     }
 
 }
