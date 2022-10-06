@@ -85,7 +85,6 @@ class SinglePageArtisanFragment : Fragment() {
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val dialogFragment = EditSingleArtisanFragment()
             dialogFragment.isCancelable = false
-            //Para o dialog não usamos o transaction
             dialogFragment.show(fragmentManager, "EditSingleArtisan")
         }
 

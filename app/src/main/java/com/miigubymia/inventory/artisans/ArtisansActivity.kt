@@ -21,7 +21,7 @@ class ArtisansActivity : AppCompatActivity() {
             val dialogFragment = AddArtisanFragment()
             dialogFragment.isCancelable = false
             //Para o dialog não usamos o transaction
-            dialogFragment.show(fragmentManager, "ShowProduct")
+            dialogFragment.show(fragmentManager, "ShowArtisan")
         }
 
     }

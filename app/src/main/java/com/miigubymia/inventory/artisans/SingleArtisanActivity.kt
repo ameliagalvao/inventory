@@ -3,6 +3,7 @@ package com.miigubymia.inventory.artisans
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.miigubymia.inventory.R
+import com.miigubymia.inventory.dataBase.Artisan
 import com.miigubymia.inventory.databinding.ActivitySingleArtisanBinding
 
 class SingleArtisanActivity : AppCompatActivity() {
