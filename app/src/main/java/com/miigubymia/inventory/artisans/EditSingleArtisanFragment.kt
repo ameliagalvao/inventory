@@ -7,8 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.Artisan
+import com.miigubymia.inventory.dataBase.ArtisanViewModel
+import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
+import com.miigubymia.inventory.dataBase.InventoryApplication
+import androidx.lifecycle.Observer
 
 class EditSingleArtisanFragment : DialogFragment() {
 
@@ -23,6 +28,18 @@ class EditSingleArtisanFragment : DialogFragment() {
     lateinit var editTextPhone:EditText
     lateinit var editTextName:EditText
     lateinit var editTextPix:EditText
+    lateinit var artisanViewModel: ArtisanViewModel
+    lateinit var artisanAdapter:ArtisanAdapter
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        artisanAdapter = ArtisanAdapter()
+        val viewModelFactory = ArtisanViewModelFactory((activity?.applicationContext as InventoryApplication).repository)
+        artisanViewModel = ViewModelProvider(this, viewModelFactory).get(ArtisanViewModel::class.java)
+        artisanViewModel.allArtisans.observe(viewLifecycleOwner,Observer{artisans ->
+            artisanAdapter.setArtisan(artisans)
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +49,7 @@ class EditSingleArtisanFragment : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_edit_single_artisan, container, false)
 
         var currentArtisan = activity?.intent?.getSerializableExtra("clickedArtisan") as Artisan
+        val artisanID = currentArtisan.id
 
         val cancelbtn = view.findViewById<Button>(R.id.btnCancelEdit)
         val confirmbtn = view.findViewById<Button>(R.id.btnEditConfirm)
@@ -70,7 +88,10 @@ class EditSingleArtisanFragment : DialogFragment() {
                 val pixrbtn = getRadioBtn()
                 val artisanPix:String = pixrbtn + editTextPix.text.toString()
                 val artisan = Artisan(editTextName.text.toString(),artisanPix,editTextPhone.text.toString(),result)
-                Toast.makeText(context, "${artisan.artisanName}, ${artisan.artisanPix}, ${artisan.artisanPhone}, ${artisan.artisanSkills}", Toast.LENGTH_SHORT).show()
+                artisan.id = artisanID
+                artisanViewModel.updateArtisan(artisan)
+                dialog!!.dismiss()
+                Toast.makeText(context, "Atualizado", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, getString(R.string.fillAll), Toast.LENGTH_SHORT).show()
             }
