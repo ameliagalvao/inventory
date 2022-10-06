@@ -11,7 +11,13 @@ import com.miigubymia.inventory.dataBase.Artisan
 
 class EditSingleArtisanFragment : DialogFragment() {
 
-    lateinit var radioGroupEdit:RadioGroup
+    lateinit var radioGroupEdit: RadioGroup
+    lateinit var cbEditAmigurumi: CheckBox
+    lateinit var cbEditCostura: CheckBox
+    lateinit var cbEditCroche: CheckBox
+    lateinit var cbEditMacrame: CheckBox
+    lateinit var cbEditSergio: CheckBox
+    lateinit var cbEditTecelagem: CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +44,17 @@ class EditSingleArtisanFragment : DialogFragment() {
         radioGroupEdit = view.findViewById(R.id.radioGroupEditPix)
         checkPixOption(currentArtisan.artisanPix)
 
+        //checkBoxes
+        cbEditAmigurumi = view.findViewById(R.id.cbEditAmigurumi)
+        cbEditCroche = view.findViewById(R.id.cbEditCroche)
+        cbEditMacrame = view.findViewById(R.id.cbEditMacrame)
+        cbEditSergio = view.findViewById(R.id.cbEditSergio)
+        cbEditCostura = view.findViewById(R.id.cbEditSew)
+        cbEditTecelagem = view.findViewById(R.id.cbEditTecelagem)
+
+        val checkedSkills = currentArtisan.artisanSkills
+        checkSkills(checkedSkills)
+
         cancelbtn.setOnClickListener {
             dialog!!.dismiss()
         }
@@ -55,6 +72,27 @@ class EditSingleArtisanFragment : DialogFragment() {
             pix.contains("E-mail") || pix.contains("Email") -> radioGroupEdit.check(R.id.rbtnEditEmail)
             pix.contains("CPF") -> radioGroupEdit.check(R.id.rbtnEditCPF)
             else -> false
+        }
+    }
+
+    private fun checkSkills(skill: String) {
+        if (skill.contains("Amigurumi")) {
+            cbEditAmigurumi.isChecked = true
+        }
+        if (skill.contains("Macramê")) {
+            cbEditMacrame.isChecked = true
+        }
+        if (skill.contains("Sérgio Matos")) {
+            cbEditSergio.isChecked = true
+        }
+        if (skill.contains("Tecelagem")) {
+            cbEditTecelagem.isChecked = true
+        }
+        if (skill.contains("Costura")) {
+            cbEditCostura.isChecked = true
+        }
+        if (skill.contains("Crochê")) {
+            cbEditCroche.isChecked = true
         }
     }
 
