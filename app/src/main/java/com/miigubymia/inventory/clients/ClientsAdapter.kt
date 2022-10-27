@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.miigubymia.inventory.R
-import com.miigubymia.inventory.artisans.ArtisanAdapter
 import com.miigubymia.inventory.dataBase.Clients
 
-class ClientAdapter: RecyclerView.Adapter<ClientAdapter.ClientViewHolder>() {
+class ClientsAdapter: RecyclerView.Adapter<ClientsAdapter.ClientViewHolder>() {
 
     var clients: List<Clients> = ArrayList()
 
@@ -22,7 +21,7 @@ class ClientAdapter: RecyclerView.Adapter<ClientAdapter.ClientViewHolder>() {
         clientListener = listener
     }
 
-    class ClientViewHolder(itemView: View, listener: ClientAdapter.onClientClickListener):RecyclerView.ViewHolder(itemView){
+    class ClientViewHolder(itemView: View, listener: ClientsAdapter.onClientClickListener):RecyclerView.ViewHolder(itemView){
         val tvClientName: TextView = itemView.findViewById(R.id.tvClientName)
         init {
             itemView.setOnClickListener {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.miigubymia.inventory.artisans.ArtisansActivity
 import com.miigubymia.inventory.clients.ClientsActivity
 import com.miigubymia.inventory.databinding.ActivityMainBinding
+import com.miigubymia.inventory.products.ProductsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.btnGoToClients.setOnClickListener {
             val intent = Intent(this@MainActivity, ClientsActivity::class.java)
+            startActivity(intent)
+        }
+
+        mainBinding.btnGoToProducts.setOnClickListener {
+            val intent = Intent(this@MainActivity, ProductsActivity::class.java)
             startActivity(intent)
         }
 

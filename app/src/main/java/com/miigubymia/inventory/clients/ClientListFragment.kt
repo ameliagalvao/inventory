@@ -12,13 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miigubymia.inventory.R
-import com.miigubymia.inventory.artisans.ArtisanAdapter
-import com.miigubymia.inventory.artisans.SingleArtisanActivity
 import com.miigubymia.inventory.dataBase.*
 
 class ClientListFragment : Fragment() {
 
-    lateinit var clientAdapter: ClientAdapter
+    lateinit var clientAdapter: ClientsAdapter
     lateinit var clientViewModel: ClientViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -38,7 +36,7 @@ class ClientListFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rvClientList)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        clientAdapter = ClientAdapter()
+        clientAdapter = ClientsAdapter()
         recyclerView.adapter = clientAdapter
 
         //SearchView
@@ -59,7 +57,7 @@ class ClientListFragment : Fragment() {
             }
         })
 
-        clientAdapter.setOnClientClickListener(object : ClientAdapter.onClientClickListener {
+        clientAdapter.setOnClientClickListener(object : ClientsAdapter.onClientClickListener {
             override fun onClientClick(position: Int) {
                 val clickedClient = clientAdapter.clients[position]
                 val clickedClientID = clientAdapter.clients[position].id
