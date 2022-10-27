@@ -67,7 +67,14 @@ abstract class InventoryDatabase: RoomDatabase() {
                     val inventoryDAO = database.getInventoryDao()
                     inventoryDAO.insertArtisan(Artisan("Cicrana da Silva", "Telefone 81988868584", "81988868584", "Amigurumi, Crochê"))
                     inventoryDAO.insertArtisan(Artisan("Fulano dos Santos", "CPF 89578435972", "81988875652", "Macramê"))
-                    inventoryDAO.insertArtisan(Artisan("Beltrana das Graças", "Email beltrana@provedor.com", "81994858264", "Costura, CrochÊ"))
+                    inventoryDAO.insertClient(Clients("Miigu", "Rua dos bobos, sem número, Recife, PE", "Fulana", "819902939239", "29831083210", "fulana@gmail.com"))
+                    inventoryDAO.insertClient(Clients("Hotel Luz", "Rua dos tolos, 123, Porto de Galinhas, PE", "Joana", "81999999999", "657575775", "joana@gmail.com"))
+                    inventoryDAO.insertProduct(Products("Bailarina", "Ana", "Bailarina em amigurumi, articulada com roupa em tecido."))
+                    inventoryDAO.insertProduct(Products("Bolsa Bel", "Chris", "Bolsa em crochê com ponto vazado. Apresenta duas cores e vem com forro com bolsos internos."))
+                    inventoryDAO.insertSupply(Supplies("Linha Amigurumi", "Linha", 13.90, "100% algodão"))
+                    inventoryDAO.insertSupply(Supplies("Linha Apollo", "Barbante", 18.90, "Algodão e fibra Eco"))
+                    inventoryDAO.insertProduction(Production(0, 0, 5, "27 de outubro de 2022"))
+                    inventoryDAO.insertProduction(Production(1, 1, 10, "15 de outubro de 2022"))
                 }
             }
 

@@ -138,8 +138,25 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
         return inventoryDAO.getSupplyById(id)
     }
 
-    ////////////////////////// Relations
+    ////////////////////////// Production
+    val allProduction : Flow<List<Production>> = inventoryDAO.getAllProduction()
 
+    @WorkerThread
+    suspend fun insertProduction(production: Production){
+        inventoryDAO.insertProduction(production)
+    }
+
+    @WorkerThread
+    suspend fun deleteProduction(production: Production){
+        inventoryDAO.deleteProduction(production)
+    }
+
+    @WorkerThread
+    suspend fun updateProduction(production: Production){
+        inventoryDAO.updateProduction(production)
+    }
+
+    ////////////////////////// Relations
     @WorkerThread
     suspend fun getArtisanWithProductions(artisanId:Int): Flow<List<ArtisanWithProductions>>{
         return inventoryDAO.getArtisanWithProductions(artisanId)

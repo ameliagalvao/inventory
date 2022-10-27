@@ -95,6 +95,19 @@ interface InventoryDAO {
     @Query("SELECT * FROM supplies_table WHERE id=:id")
     fun getSupplyById(id:Int):LiveData<Supplies>
 
+    // Production
+    @Insert
+    suspend fun insertProduction(production: Production)
+
+    @Delete
+    suspend fun deleteProduction(production: Production)
+
+    @Update
+    suspend fun updateProduction(production: Production)
+
+    @Query("SELECT * FROM production_table ORDER BY id ASC")
+    fun getAllProduction():Flow<List<Production>>
+
     // Relations
     @Transaction
     @Query("SELECT * FROM artisan_table WHERE id = :artisanID")
