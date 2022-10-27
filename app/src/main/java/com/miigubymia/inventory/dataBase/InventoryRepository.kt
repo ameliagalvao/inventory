@@ -137,4 +137,16 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
     fun getSupplyById(id:Int): LiveData<Supplies>{
         return inventoryDAO.getSupplyById(id)
     }
+
+    ////////////////////////// Relations
+
+    @WorkerThread
+    suspend fun getArtisanWithProductions(artisanId:Int): Flow<List<ArtisanWithProductions>>{
+        return inventoryDAO.getArtisanWithProductions(artisanId)
+    }
+
+    @WorkerThread
+    suspend fun getProductWithProductions(productId:Int): Flow<List<ProductWithProductions>>{
+        return inventoryDAO.getProductWithProductions(productId)
+    }
 }

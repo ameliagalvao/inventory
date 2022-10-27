@@ -98,10 +98,10 @@ interface InventoryDAO {
     // Relations
     @Transaction
     @Query("SELECT * FROM artisan_table WHERE id = :artisanID")
-    suspend fun getArtisanWithProductions(artisanID:Int): List<ArtisanWithProductions>
+    suspend fun getArtisanWithProductions(artisanID:Int): Flow<List<ArtisanWithProductions>>
 
     @Transaction
     @Query("SELECT * FROM products_table WHERE id = :productID")
-    suspend fun getProductWithProductions(productID:Int): List<ProductWithProductions>
+    suspend fun getProductWithProductions(productID:Int): Flow<List<ProductWithProductions>>
 
 }
