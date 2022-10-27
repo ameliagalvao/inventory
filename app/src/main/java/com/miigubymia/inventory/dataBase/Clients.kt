@@ -2,6 +2,7 @@ package com.miigubymia.inventory.dataBase
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "clients_table")
 data class Clients(
@@ -11,7 +12,9 @@ data class Clients(
     val contactPhone:String = "",
     val cpfOrCnpj:String = "",
     val email:String = ""
-) {
+): Serializable {
     @PrimaryKey(autoGenerate = true)
-    val id:Int = 0
+    var id:Int = 0
+    // openOrders
+    // concludedOrders
 }
