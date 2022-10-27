@@ -4,28 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    tools:context=".artisans.ArtisansActivity"
-    android:background="@drawable/bg_artisans">
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentArtisans"
-        android:name="com.miigubymia.inventory.artisans.ArtisansListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".clients.ClientsActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddArtisan"
+        android:id="@+id/fabAddClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:backgroundTint="#F44336"
         android:clickable="true"
         app:backgroundTint="#F44336"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerClients"
+        android:name="com.miigubymia.inventory.clients.ClientListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

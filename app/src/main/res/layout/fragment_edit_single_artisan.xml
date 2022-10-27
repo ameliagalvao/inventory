@@ -172,8 +172,8 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroupEditPix"
-                    app:startIconDrawable="@drawable/ic_baseline_attach_money_24"
-                    app:startIconTint="@color/teal_700"
+                    app:startIconDrawable="@drawable/ic_money"
+                    app:startIconTint="?colorPrimary"
                     tools:layout_editor_absoluteX="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -208,7 +208,7 @@
                     android:backgroundTint="@color/white"
                     android:padding="5dp"
                     android:text="@string/cancel"
-                    android:textColor="@color/teal_700"
+                    android:textColor="?colorPrimary"
                     android:textStyle="bold"
                     app:cornerRadius="20dp"
                     app:iconPadding="2dp" />
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_round"
                     android:backgroundTint="@color/white"
-                    android:drawableLeft="@drawable/ic_baseline_phone_android_24"
+                    android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="10dp"
                     android:inputType="phone"
                     android:textColor="#373737"

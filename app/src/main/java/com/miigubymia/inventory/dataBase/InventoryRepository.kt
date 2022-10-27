@@ -48,12 +48,12 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
     }
 
     @WorkerThread
-    suspend fun deleteArtisan(client: Clients){
+    suspend fun deleteClient(client: Clients){
         inventoryDAO.deleteClient(client)
     }
 
     @WorkerThread
-    suspend fun updateArtisan(client: Clients){
+    suspend fun updateClient(client: Clients){
         inventoryDAO.updateClient(client)
     }
 

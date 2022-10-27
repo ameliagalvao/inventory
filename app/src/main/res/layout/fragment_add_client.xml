@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_round"
+    tools:context=".clients.AddClientFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvClientAddTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/addNewClient"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/businessName"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_business">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddbusinessName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintName"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cnpjOrCpf"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_fingerprint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddClientCnpjOrCPF"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintDocument"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:hint="@string/address"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_house">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddClientAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintAddress"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contactPersonName"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_person">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddContactPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintName"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddAClientPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintPhone"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddClientEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_round"
+                    android:hint="@string/hintEmail"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelAddClient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?colorPrimaryVariant"
+                    android:text="@string/cancel"
+                    android:textColor="?colorPrimary"
+                    android:textSize="14sp"
+                    app:cornerRadius="20dp" />
+
+                <Button
+                    android:id="@+id/btnRegisterNewClient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="3"
+                    android:backgroundTint="?colorSecondary"
+                    android:text="@string/register"
+                    android:textAllCaps="true"
+                    android:textColor="?colorOnPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
