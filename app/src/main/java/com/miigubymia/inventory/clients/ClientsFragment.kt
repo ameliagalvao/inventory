@@ -2,19 +2,18 @@ package com.miigubymia.inventory.clients
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miigubymia.inventory.R
-import com.miigubymia.inventory.dataBase.*
+import com.miigubymia.inventory.dataBase.InventoryApplication
 
-class ClientListFragment : Fragment() {
+class ClientsFragment : Fragment() {
 
     lateinit var clientAdapter: ClientsAdapter
     lateinit var clientViewModel: ClientViewModel
@@ -38,24 +37,6 @@ class ClientListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         clientAdapter = ClientsAdapter()
         recyclerView.adapter = clientAdapter
-
-        //SearchView
-        val searchView = view.findViewById<SearchView>(R.id.searchViewClients)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query != null){
-                    searchClientsInDatabase(query)
-                }
-                return true
-            }
-
-            override fun onQueryTextChange(query: String?): Boolean {
-                if(query != null){
-                    searchClientsInDatabase(query)
-                }
-                return true
-            }
-        })
 
         clientAdapter.setOnClientClickListener(object : ClientsAdapter.onClientClickListener {
             override fun onClientClick(position: Int) {

@@ -73,8 +73,8 @@ abstract class InventoryDatabase: RoomDatabase() {
                     inventoryDAO.insertProduct(Products("Bolsa Bel", "Chris", "Bolsa em crochê com ponto vazado. Apresenta duas cores e vem com forro com bolsos internos."))
                     inventoryDAO.insertSupply(Supplies("Linha Amigurumi", "Linha", 13.90, "100% algodão"))
                     inventoryDAO.insertSupply(Supplies("Linha Apollo", "Barbante", 18.90, "Algodão e fibra Eco"))
-                    inventoryDAO.insertProduction(Production(0, 0, 5, "27 de outubro de 2022"))
-                    inventoryDAO.insertProduction(Production(1, 1, 10, "15 de outubro de 2022"))
+                    inventoryDAO.insertProduction(Production(2, 1, 5, "27 de outubro de 2022"))
+                    inventoryDAO.insertProduction(Production(1, 2, 10, "15 de outubro de 2022"))
                 }
             }
 

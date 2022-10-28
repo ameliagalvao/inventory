@@ -1,43 +1,36 @@
 package com.miigubymia.inventory
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.miigubymia.inventory.artisans.ArtisansActivity
-import com.miigubymia.inventory.clients.ClientsActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.miigubymia.inventory.databinding.ActivityMainBinding
-import com.miigubymia.inventory.production.ProductionActivity
-import com.miigubymia.inventory.products.ProductsActivity
+import com.miigubymia.inventory.databinding.ActivityWelcomeBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mainBinding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        val view = mainBinding.root
-        setContentView(view)
 
-        mainBinding.btnGoToArtisans.setOnClickListener {
-            val intent = Intent(this@MainActivity, ArtisansActivity::class.java)
-            startActivity(intent)
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        mainBinding.btnGoToClients.setOnClickListener {
-            val intent = Intent(this@MainActivity, ClientsActivity::class.java)
-            startActivity(intent)
-        }
+        val navView: BottomNavigationView = binding.navView
 
-        mainBinding.btnGoToProducts.setOnClickListener {
-            val intent = Intent(this@MainActivity, ProductsActivity::class.java)
-            startActivity(intent)
-        }
-
-        mainBinding.btnGoToProduction.setOnClickListener {
-            val intent = Intent(this@MainActivity, ProductionActivity::class.java)
-            startActivity(intent)
-        }
-
+        val navController = findNavController(R.id.nav_host_fragment_activity_welcome)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_artisan, R.id.navigation_products, R.id.navigation_clients
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }

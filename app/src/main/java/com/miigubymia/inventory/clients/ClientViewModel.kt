@@ -1,6 +1,8 @@
-package com.miigubymia.inventory.dataBase
+package com.miigubymia.inventory.clients
 
 import androidx.lifecycle.*
+import com.miigubymia.inventory.dataBase.Clients
+import com.miigubymia.inventory.dataBase.InventoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

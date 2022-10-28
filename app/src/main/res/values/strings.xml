@@ -44,4 +44,9 @@
     <string name="deleted">Artesão Excluído.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_home">Registrar Produção</string>
+    <string name="title_artisan">Artesãos</string>
+    <string name="title_clients">Clientes</string>
+    <string name="title_products">Produtos</string>
 </resources>

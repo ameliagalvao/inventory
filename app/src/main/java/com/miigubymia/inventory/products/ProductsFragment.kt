@@ -2,22 +2,19 @@ package com.miigubymia.inventory.products
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miigubymia.inventory.R
-import com.miigubymia.inventory.clients.ClientsAdapter
-import com.miigubymia.inventory.clients.SingleClientActivity
-import com.miigubymia.inventory.dataBase.*
+import com.miigubymia.inventory.dataBase.InventoryApplication
 
-class ProductListFragment : Fragment() {
+class ProductsFragment : Fragment() {
 
     lateinit var productsAdapter: ProductsAdapter
     lateinit var productViewModel: ProductsViewModel
