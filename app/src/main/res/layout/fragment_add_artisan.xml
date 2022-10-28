@@ -36,8 +36,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Nome"
                 app:expandedHintEnabled="false"
-                app:hintTextColor="@color/black"
-                app:startIconDrawable="@drawable/ic_person">
+                android:textColorHint="@color/black"
+                app:startIconDrawable="@drawable/ic_person"
+                app:startIconTint="@color/teal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etAddArtisanName"
@@ -57,10 +58,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="WhattsApp"
+                android:hint="@string/phone"
                 app:expandedHintEnabled="false"
-                app:hintTextColor="?colorOnSecondary"
-                app:startIconDrawable="@drawable/ic_phone">
+                android:textColorHint="@color/black"
+                app:startIconDrawable="@drawable/ic_phone"
+                app:startIconTint="@color/teal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etAddArtisanPhone"
@@ -133,11 +135,11 @@
                     android:id="@+id/textInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="?colorOnSecondary"
-                    app:hintTextColor="?colorOnSecondary"
+                    android:textColorHint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroupPix"
                     app:startIconDrawable="@drawable/ic_money"
+                    app:startIconTint="@color/teal"
                     tools:layout_editor_absoluteX="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText

@@ -173,7 +173,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroupEditPix"
                     app:startIconDrawable="@drawable/ic_money"
-                    app:startIconTint="?colorPrimary"
+                    app:startIconTint="@color/teal"
                     tools:layout_editor_absoluteX="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -249,7 +249,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_round"
-                    android:backgroundTint="@color/white"
                     android:textColor="#373737"
                     android:textColorHighlight="#373737"
                     android:textColorHint="#373737" />
@@ -274,8 +273,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_round"
-                    android:backgroundTint="@color/white"
                     android:drawableLeft="@drawable/ic_phone"
+                    app:startIconTint="@color/teal"
                     android:drawablePadding="10dp"
                     android:inputType="phone"
                     android:textColor="#373737"

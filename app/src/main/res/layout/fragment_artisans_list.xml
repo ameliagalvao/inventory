@@ -20,6 +20,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_round"
+            android:backgroundTint="@color/teal"
             app:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent"
             app:queryHint="@string/hintSearchArtisan" />
