@@ -40,13 +40,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnGoToClients" />
 
             <Button
-                android:id="@+id/btnProduction"
+                android:id="@+id/btnGoToProduction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#16FFFFFF"
+                android:backgroundTint="?colorPrimary"
                 android:text="@string/production"
-                android:textColor="#56FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
