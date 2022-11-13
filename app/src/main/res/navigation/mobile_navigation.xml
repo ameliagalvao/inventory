@@ -15,7 +15,7 @@
         android:id="@+id/navigation_products"
         android:name="com.miigubymia.inventory.products.ProductsFragment"
         android:label="@string/title_products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_product_list" />
 
     <fragment
         android:id="@+id/navigation_clients"
