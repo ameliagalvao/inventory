@@ -15,6 +15,8 @@ class ProductionAdapter: RecyclerView.Adapter<ProductionAdapter.ProductionViewHo
     class ProductionViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView){
         val tvProductionDate: TextView = itemView.findViewById(R.id.tvProductionDate)
+        val tvProductionProductName = itemView.findViewById<TextView>(R.id.tvProductionProductName)
+        val tvProductionQuantity = itemView.findViewById<TextView>(R.id.tvProductionQuantity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductionViewHolder {
@@ -26,6 +28,8 @@ class ProductionAdapter: RecyclerView.Adapter<ProductionAdapter.ProductionViewHo
     override fun onBindViewHolder(holder: ProductionViewHolder, position: Int) {
         var currentProduction:Production = production[position]
         holder.tvProductionDate.text = currentProduction.date
+        holder.tvProductionProductName.text = currentProduction.productId.toString()
+        holder.tvProductionQuantity.text = currentProduction.productionQuantity.toString()
     }
 
     override fun getItemCount(): Int {

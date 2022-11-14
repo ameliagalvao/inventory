@@ -5,21 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".production.ProductionListFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewProduction"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProduction"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/production_card" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Produção"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewProduction"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProduction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/production_card" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
