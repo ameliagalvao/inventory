@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.InventoryApplication
 
@@ -50,6 +52,11 @@ class ClientsFragment : Fragment() {
 
         })
 
+        val fabAddClient = view.findViewById<FloatingActionButton>(R.id.fabAddClient)
+
+        fabAddClient.setOnClickListener{
+            Toast.makeText(context, "Ainda não implementado", Toast.LENGTH_SHORT).show()
+        }
 
         return view
     }

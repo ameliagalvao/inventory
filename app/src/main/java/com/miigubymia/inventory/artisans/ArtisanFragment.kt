@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.miigubymia.inventory.R
 import com.miigubymia.inventory.dataBase.ArtisanViewModel
 import com.miigubymia.inventory.dataBase.ArtisanViewModelFactory
@@ -71,6 +73,16 @@ class ArtisanFragment : Fragment() {
             }
 
         })
+
+        val fabAddArtisan = view.findViewById<FloatingActionButton>(R.id.fabAddArtisan)
+
+        fabAddArtisan.setOnClickListener{
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val dialogFragment = AddArtisanFragment()
+            dialogFragment.isCancelable = false
+            //Para o dialog não usamos o transaction
+            dialogFragment.show(fragmentManager, "ShowArtisan")
+        }
 
         return view
     }
