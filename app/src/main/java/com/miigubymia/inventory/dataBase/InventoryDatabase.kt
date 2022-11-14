@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
     Production::class,
     Products::class,
     Supplies::class
-                     ], version = 2)
+                     ], version = 3)
 abstract class InventoryDatabase: RoomDatabase() {
 
     abstract fun getInventoryDao():InventoryDAO
@@ -43,13 +43,47 @@ abstract class InventoryDatabase: RoomDatabase() {
             }
         }
 
+        val migration_2_3: Migration = object : Migration(2,3){
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE `new_artisan_table`(" +
+                        "`artisanName` TEXT NOT NULL," +
+                        "`artisanPix` TEXT NOT NULL," +
+                        "`artisanPhone` TEXT NOT NULL," +
+                        "`artisanSkills` TEXT NOT NULL," +
+                        "`artisanProduction` TEXT NOT NULL," +
+                        "PRIMARY KEY(`artisanName`))")
+                database.execSQL("DROP TABLE artisan_table")
+                database.execSQL("ALTER TABLE new_artisan_table RENAME TO artisan_table")
+                //PRODUCTS
+                database.execSQL("CREATE TABLE `new_products_table`(" +
+                        "`productName` TEXT NOT NULL," +
+                        "`productdesigner` TEXT NOT NULL," +
+                        "`productdescription` TEXT NOT NULL," +
+                        "`productHandWorkCost` INTEGER NOT NULL," +
+                        "`productAvailableInventory` INTEGER NOT NULL," +
+                        "PRIMARY KEY(`productName`))")
+                database.execSQL("DROP TABLE products_table")
+                database.execSQL("ALTER TABLE new_products_table RENAME TO products_table")
+                //PRODUCTION
+                database.execSQL("CREATE TABLE `new_production_table`(" +
+                        "`artisanName` TEXT NOT NULL," +
+                        "`productName` TEXT NOT NULL," +
+                        "`productionQuantity` INTEGER NOT NULL," +
+                        "`date` TEXT NOT NULL," +
+                        "`id` INTEGER NOT NULL," +
+                        "PRIMARY KEY(`id`))")
+                database.execSQL("DROP TABLE production_table")
+                database.execSQL("ALTER TABLE new_production_table RENAME TO production_table")
+            }
+        }
+
         fun getDatabase(context: Context, scope: CoroutineScope):InventoryDatabase{
             // só permite a criação de uma instância por vez.
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(context.applicationContext,
                 InventoryDatabase::class.java,"inventory_database")
                     .allowMainThreadQueries()
-                    .addMigrations(migration_1_2)
+                    .addMigrations(migration_1_2, migration_2_3)
                     .addCallback(InventoryDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
@@ -73,8 +107,8 @@ abstract class InventoryDatabase: RoomDatabase() {
                     inventoryDAO.insertProduct(Products("Bolsa Bel", "Chris", "Bolsa em crochê com ponto vazado. Apresenta duas cores e vem com forro com bolsos internos."))
                     inventoryDAO.insertSupply(Supplies("Linha Amigurumi", "Linha", 13.90, "100% algodão"))
                     inventoryDAO.insertSupply(Supplies("Linha Apollo", "Barbante", 18.90, "Algodão e fibra Eco"))
-                    inventoryDAO.insertProduction(Production(2, 1, 5, "27/10/2022"))
-                    inventoryDAO.insertProduction(Production(1, 2, 10, "15/10/2022"))
+                    inventoryDAO.insertProduction(Production("Cicrana da Silva", "Bolsa Bel", 5, "27/10/2022"))
+                    inventoryDAO.insertProduction(Production("Cicrana da Silva", "Bolsa Bel", 10, "15/10/2022"))
                 }
             }
 

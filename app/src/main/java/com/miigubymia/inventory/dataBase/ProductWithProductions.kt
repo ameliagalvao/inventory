@@ -6,8 +6,8 @@ import androidx.room.Relation
 data class ProductWithProductions(
     @Embedded val product:Products,
     @Relation(
-        parentColumn = "id",
-        entityColumn = "productId"
+        parentColumn = "productName",
+        entityColumn = "productName"
     )
     val productions: List<Production>
 ) {

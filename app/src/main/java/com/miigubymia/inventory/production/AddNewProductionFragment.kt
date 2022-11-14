@@ -28,8 +28,8 @@ class AddNewProductionFragment : Fragment() {
     lateinit var autoCompleteArtisan:AutoCompleteTextView
     lateinit var autoCompleteProducts:AutoCompleteTextView
     lateinit var etQuantity:EditText
-    var currentProductId = 0
-    var currentArtisanId = 0
+    var currentProduct = ""
+    var currentArtisan = ""
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -55,10 +55,8 @@ class AddNewProductionFragment : Fragment() {
         artisanViewModel.allArtisans.observe(viewLifecycleOwner, Observer{ artisans ->
             // Update the cached copy of the students in the adapter.
             artisans?.let {
-                val arr = mutableMapOf<String, Int>()
                 val arr2 = mutableListOf<String>()
                 for (value in it) {
-                    arr[value.artisanName] = value.id
                     arr2.add(value.artisanName)
                 }
                 val adapter: ArrayAdapter<String> =
@@ -67,7 +65,7 @@ class AddNewProductionFragment : Fragment() {
                 autoCompleteArtisan.setOnItemClickListener { _, _, position, _ ->
                     // Pegar o que foi clicado:
                     val value = adapter.getItem(position) ?: ""
-                    currentArtisanId = arr.get(value)!!
+                    currentArtisan = arr2[0]
                 }
             }
         })
@@ -80,11 +78,9 @@ class AddNewProductionFragment : Fragment() {
         productViewModel.allProducts.observe(viewLifecycleOwner, Observer{ products ->
             // Update the cached copy of the students in the adapter.
             products?.let {
-                val arr = mutableMapOf<String, Int>()
                 val arr2 = mutableListOf<String>()
                 for (value in it) {
-                    arr[value.name] = value.id
-                    arr2.add(value.name)
+                    arr2.add(value.productName)
                 }
                 val adapter: ArrayAdapter<String> =
                     ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, arr2)
@@ -92,7 +88,7 @@ class AddNewProductionFragment : Fragment() {
                 autoCompleteProducts.setOnItemClickListener { _, _, position, _ ->
                     // Pegar o que foi clicado:
                     val value = adapter.getItem(position) ?: ""
-                    currentProductId = arr.get(value)!!
+                    currentProduct = arr2[0]
                 }
             }
         })
@@ -118,7 +114,7 @@ class AddNewProductionFragment : Fragment() {
                 // Data
                 val simpleFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 val currentDate = simpleFormat.format(Date())
-                val production = Production(currentArtisanId, currentProductId, productionQuantity, currentDate)
+                val production = Production(currentArtisan, currentProduct, productionQuantity, currentDate)
                 productionViewModel.insertProduction(production)
                 autoCompleteArtisan.setText("")
                 autoCompleteProducts.setText("")

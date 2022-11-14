@@ -20,12 +20,12 @@ class ProductionViewModel (private val repository: InventoryRepository): ViewMod
         repository.updateProduction(production)
     }
 
-    fun getProductionPerArtisan(artisanID:Int) = viewModelScope.launch(Dispatchers.IO){
-        repository.getArtisanWithProductions(artisanID)
+    fun getProductionPerArtisan(artisanName:String) = viewModelScope.launch(Dispatchers.IO){
+        repository.getArtisanWithProductions(artisanName)
     }
 
-    fun getProductionPerProduct(productID:Int) = viewModelScope.launch(Dispatchers.IO){
-        repository.getArtisanWithProductions(productID)
+    fun getProductionPerProduct(productName:String) = viewModelScope.launch(Dispatchers.IO){
+        repository.getArtisanWithProductions(productName)
     }
 
 }

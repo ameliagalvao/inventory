@@ -26,9 +26,6 @@ interface InventoryDAO {
     @Query("SELECT * FROM artisan_table WHERE artisanName LIKE :searchQuery")
     fun searchArtisan(searchQuery:String): Flow<List<Artisan>>
 
-    @Query("SELECT * FROM artisan_table WHERE id=:id")
-    fun getArtisanById(id:Int):LiveData<Artisan>
-
     // Clients
     @Insert
     suspend fun insertClient(client:Clients)
@@ -61,17 +58,14 @@ interface InventoryDAO {
     @Update
     suspend fun updateProduct(product:Products)
 
-    @Query("SELECT * FROM products_table ORDER BY name ASC")
+    @Query("SELECT * FROM products_table ORDER BY productName ASC")
     fun getAllProducts():Flow<List<Products>>
 
     @Query("DELETE FROM products_table")
     suspend fun deleteAllProducts()
 
-    @Query("SELECT * FROM products_table WHERE name LIKE :searchQuery")
+    @Query("SELECT * FROM products_table WHERE productName LIKE :searchQuery")
     fun searchProduct(searchQuery:String): Flow<List<Products>>
-
-    @Query("SELECT * FROM products_table WHERE id=:id")
-    fun getProductById(id:Int):LiveData<Products>
 
     // Supplies
     @Insert
@@ -110,11 +104,11 @@ interface InventoryDAO {
 
     // Relations
     @Transaction
-    @Query("SELECT * FROM artisan_table WHERE id = :artisanID")
-    fun getArtisanWithProductions(artisanID:Int): Flow<List<ArtisanWithProductions>>
+    @Query("SELECT * FROM artisan_table WHERE artisanName = :artisanName")
+    fun getArtisanWithProductions(artisanName:String): Flow<List<ArtisanWithProductions>>
 
     @Transaction
-    @Query("SELECT * FROM products_table WHERE id = :productID")
-    fun getProductWithProductions(productID:Int): Flow<List<ProductWithProductions>>
+    @Query("SELECT * FROM products_table WHERE productName = :productName")
+    fun getProductWithProductions(productName:String): Flow<List<ProductWithProductions>>
 
 }

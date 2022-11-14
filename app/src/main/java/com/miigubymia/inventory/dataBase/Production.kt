@@ -6,8 +6,8 @@ import java.io.Serializable
 
 @Entity(tableName = "production_table")
 data class Production(
-    val artisanId:Int,
-    val productId:Int,
+    val artisanName:String,
+    val productName:String,
     val productionQuantity:Int,
     val date:String
 ): Serializable {

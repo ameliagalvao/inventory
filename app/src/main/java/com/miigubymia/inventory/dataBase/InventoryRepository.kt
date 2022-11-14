@@ -34,11 +34,6 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
         return inventoryDAO.searchArtisan(searchQuery)
     }
 
-    @WorkerThread
-    fun getArtisanById(id:Int): LiveData<Artisan>{
-        return inventoryDAO.getArtisanById(id)
-    }
-
     ////////////////////////// Clients
     val allClients : Flow<List<Clients>> = inventoryDAO.getAllClients()
 
@@ -65,11 +60,6 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
     @WorkerThread
     fun searchClient(searchQuery:String):Flow<List<Clients>>{
         return inventoryDAO.searchClient(searchQuery)
-    }
-
-    @WorkerThread
-    fun getClientById(id:Int): LiveData<Clients>{
-        return inventoryDAO.getClientById(id)
     }
 
     ////////////////////////// Products
@@ -100,11 +90,6 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
         return inventoryDAO.searchProduct(searchQuery)
     }
 
-    @WorkerThread
-    fun getProductById(id:Int): LiveData<Products>{
-        return inventoryDAO.getProductById(id)
-    }
-
     ////////////////////////// Supplies
     val allSupplies : Flow<List<Supplies>> = inventoryDAO.getAllSupplies()
 
@@ -133,11 +118,6 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
         return inventoryDAO.searchSupply(searchQuery)
     }
 
-    @WorkerThread
-    fun getSupplyById(id:Int): LiveData<Supplies>{
-        return inventoryDAO.getSupplyById(id)
-    }
-
     ////////////////////////// Production
     val allProduction : Flow<List<Production>> = inventoryDAO.getAllProduction()
 
@@ -158,12 +138,12 @@ class InventoryRepository(private val inventoryDAO: InventoryDAO) {
 
     ////////////////////////// Relations
     @WorkerThread
-    suspend fun getArtisanWithProductions(artisanId:Int): Flow<List<ArtisanWithProductions>>{
-        return inventoryDAO.getArtisanWithProductions(artisanId)
+    suspend fun getArtisanWithProductions(artisanName:String): Flow<List<ArtisanWithProductions>>{
+        return inventoryDAO.getArtisanWithProductions(artisanName)
     }
 
     @WorkerThread
-    suspend fun getProductWithProductions(productId:Int): Flow<List<ProductWithProductions>>{
-        return inventoryDAO.getProductWithProductions(productId)
+    suspend fun getProductWithProductions(productName:String): Flow<List<ProductWithProductions>>{
+        return inventoryDAO.getProductWithProductions(productName)
     }
 }

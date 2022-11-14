@@ -39,7 +39,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>(
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         var currentProduct: Products = products[position]
-        holder.tvProductName.text = currentProduct.name
+        holder.tvProductName.text = currentProduct.productName
     }
 
     override fun getItemCount(): Int {

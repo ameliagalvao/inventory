@@ -6,10 +6,10 @@ import java.io.Serializable
 
 @Entity(tableName = "artisan_table")
 class Artisan(
+    @PrimaryKey(autoGenerate = false)
     val artisanName:String,
     val artisanPix:String,
     val artisanPhone:String,
     val artisanSkills:String):Serializable {
-    @PrimaryKey(autoGenerate = true)
-    var id = 0
+    var artisanProduction = ""
 }

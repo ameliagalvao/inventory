@@ -28,10 +28,6 @@ class ArtisanViewModel(private val repository: InventoryRepository): ViewModel()
         return repository.searchArtisan(searchQuery).asLiveData()
     }
 
-    fun getArtisanById(id:Int): LiveData<Artisan>{
-        return repository.getArtisanById(id)
-    }
-
 }
 
 class ArtisanViewModelFactory(private var repository: InventoryRepository): ViewModelProvider.Factory{

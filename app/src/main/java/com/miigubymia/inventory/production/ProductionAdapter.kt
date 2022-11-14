@@ -28,7 +28,6 @@ class ProductionAdapter: RecyclerView.Adapter<ProductionAdapter.ProductionViewHo
     override fun onBindViewHolder(holder: ProductionViewHolder, position: Int) {
         var currentProduction:Production = production[position]
         holder.tvProductionDate.text = currentProduction.date
-        holder.tvProductionProductName.text = currentProduction.productId.toString()
         holder.tvProductionQuantity.text = currentProduction.productionQuantity.toString()
     }
 

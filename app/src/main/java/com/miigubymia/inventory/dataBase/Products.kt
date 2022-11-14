@@ -6,14 +6,13 @@ import java.io.Serializable
 
 @Entity(tableName = "products_table")
 data class Products (
-    val name:String,
-    val designer:String,
-    val description:String
+    @PrimaryKey(autoGenerate = false)
+    val productName:String,
+    val productdesigner:String,
+    val productdescription:String
         ): Serializable {
-    @PrimaryKey(autoGenerate = true)
-    var id:Int = 0
-    var handWorkCost:Int = 0
-    var availableInventory:Int = 0
+    var productHandWorkCost:Int = 0
+    var productAvailableInventory:Int = 0
     // supplies
     // models
 }
