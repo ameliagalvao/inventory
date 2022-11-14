@@ -28,6 +28,8 @@ class AddNewProductionFragment : Fragment() {
     lateinit var autoCompleteArtisan:AutoCompleteTextView
     lateinit var autoCompleteProducts:AutoCompleteTextView
     lateinit var etQuantity:EditText
+    var currentProductId = 0
+    var currentArtisanId = 0
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -53,32 +55,45 @@ class AddNewProductionFragment : Fragment() {
         artisanViewModel.allArtisans.observe(viewLifecycleOwner, Observer{ artisans ->
             // Update the cached copy of the students in the adapter.
             artisans?.let {
-                val arr = mutableListOf<String>()
-
+                val arr = mutableMapOf<String, Int>()
+                val arr2 = mutableListOf<String>()
                 for (value in it) {
-                    arr.add(value.artisanName)
+                    arr[value.artisanName] = value.id
+                    arr2.add(value.artisanName)
                 }
                 val adapter: ArrayAdapter<String> =
-                    ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, arr)
+                    ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, arr2)
                 autoCompleteArtisan.setAdapter(adapter)
+                autoCompleteArtisan.setOnItemClickListener { _, _, position, _ ->
+                    // Pegar o que foi clicado:
+                    val value = adapter.getItem(position) ?: ""
+                    currentArtisanId = arr.get(value)!!
+                }
             }
         })
 
         //AutoCompleteProducts
         autoCompleteProducts = view.findViewById<AutoCompleteTextView>(R.id.tvChooseProduct)
+        var productID = ""
         val productsViewModelFactory = ProductsViewModelFactory((activity?.applicationContext as InventoryApplication).repository)
         productViewModel = ViewModelProvider(this, productsViewModelFactory).get(ProductsViewModel::class.java)
         productViewModel.allProducts.observe(viewLifecycleOwner, Observer{ products ->
             // Update the cached copy of the students in the adapter.
             products?.let {
-                val arr = mutableListOf<String>()
-
+                val arr = mutableMapOf<String, Int>()
+                val arr2 = mutableListOf<String>()
                 for (value in it) {
-                    arr.add(value.name)
+                    arr[value.name] = value.id
+                    arr2.add(value.name)
                 }
                 val adapter: ArrayAdapter<String> =
-                    ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, arr)
+                    ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, arr2)
                 autoCompleteProducts.setAdapter(adapter)
+                autoCompleteProducts.setOnItemClickListener { _, _, position, _ ->
+                    // Pegar o que foi clicado:
+                    val value = adapter.getItem(position) ?: ""
+                    currentProductId = arr.get(value)!!
+                }
             }
         })
 
@@ -98,15 +113,16 @@ class AddNewProductionFragment : Fragment() {
         btnRegister.setOnClickListener {
             var teste = mutableListOf<List<Artisan>>()
             if (validation()) {
-                val product = autoCompleteProducts.text.toString()
                 val artisan = autoCompleteArtisan.text.toString()
-                val productionQuantiy = etQuantity.text.toString().toInt()
+                val productionQuantity = etQuantity.text.toString().toInt()
                 // Data
                 val simpleFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 val currentDate = simpleFormat.format(Date())
-                // val production = Production(artisanID, productID, productionQuantiy, currentDate)
-                // productionViewModel.insertProduction(production)
-                Toast.makeText(context, "$artisan $product $currentDate $productionQuantiy", Toast.LENGTH_SHORT).show()
+                val production = Production(currentArtisanId, currentProductId, productionQuantity, currentDate)
+                productionViewModel.insertProduction(production)
+                autoCompleteArtisan.setText("")
+                autoCompleteProducts.setText("")
+                etQuantity.setText("")
             } else {
                 Toast.makeText(context, getString(R.string.fillAll), Toast.LENGTH_SHORT).show()
             }
@@ -123,14 +139,6 @@ class AddNewProductionFragment : Fragment() {
             else -> true
         }
         return result
-    }
-
-    private fun getArtisanID(artisan:Artisan):Int{
-        return artisan.id
-    }
-
-    private fun getProductID(product:Products):Int{
-        return product.id
     }
 
 }
