@@ -5,35 +5,37 @@
     android:layout_height="match_parent"
     tools:context=".production.ProductionListFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="Lista de Produção"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/orange"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="Lista de Produção"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/orange"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProduction"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:listitem="@layout/production_card" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProduction"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/production_card" />
-        </LinearLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/btnSaveFileProduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gerar arquivo da produção" />
+
+    </LinearLayout>
 
 </FrameLayout>

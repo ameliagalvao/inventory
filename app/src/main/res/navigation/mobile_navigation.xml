@@ -27,5 +27,14 @@
         android:id="@+id/nav_new_production"
         android:name="com.miigubymia.inventory.production.AddNewProductionFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_add_new_production" />
+        tools:layout="@layout/fragment_add_new_production" >
+        <action
+            android:id="@+id/action_nav_new_production_to_productionListFragment"
+            app:destination="@id/productionListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productionListFragment"
+        android:name="com.miigubymia.inventory.production.ProductionListFragment"
+        android:label="fragment_production_list"
+        tools:layout="@layout/fragment_production_list" />
 </navigation>

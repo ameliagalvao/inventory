@@ -64,10 +64,10 @@ class ProductsFragment : Fragment() {
         productsAdapter.setOnProductClickListener(object : ProductsAdapter.onProductClickListener {
             override fun onProductClick(position: Int) {
                 val clickedProduct = productsAdapter.products[position]
-                val intent = Intent(context, SingleProductActivity::class.java)
-                // Toast.makeText(context, "$clickedId", Toast.LENGTH_SHORT).show()
-                intent.putExtra("clickedProduct", clickedProduct)
-                startActivity(intent)
+                //val intent = Intent(context, SingleProductActivity::class.java)
+                Toast.makeText(context, "$clickedProduct", Toast.LENGTH_SHORT).show()
+                //intent.putExtra("clickedProduct", clickedProduct)
+                //startActivity(intent)
             }
 
         })

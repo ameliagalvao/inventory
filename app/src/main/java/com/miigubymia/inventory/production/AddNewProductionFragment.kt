@@ -8,13 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.miigubymia.inventory.R
-import com.miigubymia.inventory.artisans.ArtisanAdapter
 import com.miigubymia.inventory.dataBase.*
-import com.miigubymia.inventory.products.ProductsAdapter
 import com.miigubymia.inventory.products.ProductsViewModel
 import com.miigubymia.inventory.products.ProductsViewModelFactory
 import java.util.*
@@ -47,6 +45,7 @@ class AddNewProductionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_new_production, container, false)
+        val btnViewProduction = view.findViewById<Button>(R.id.btnViewProduction)
 
         //AutoCompleteViewArtisan
         autoCompleteArtisan = view.findViewById<AutoCompleteTextView>(R.id.tvChooseArtisan)
@@ -122,6 +121,10 @@ class AddNewProductionFragment : Fragment() {
             } else {
                 Toast.makeText(context, getString(R.string.fillAll), Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btnViewProduction.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_nav_new_production_to_productionListFragment)
         }
 
         return view

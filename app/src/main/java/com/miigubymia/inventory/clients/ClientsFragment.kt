@@ -43,11 +43,11 @@ class ClientsFragment : Fragment() {
         clientAdapter.setOnClientClickListener(object : ClientsAdapter.onClientClickListener {
             override fun onClientClick(position: Int) {
                 val clickedClient = clientAdapter.clients[position]
-                val clickedClientID = clientAdapter.clients[position].id
-                val intent = Intent(context, SingleClientActivity::class.java)
-                // Toast.makeText(context, "$clickedId", Toast.LENGTH_SHORT).show()
-                intent.putExtra("clickedClient", clickedClient)
-                startActivity(intent)
+                // val clickedClientID = clientAdapter.clients[position].id
+                // val intent = Intent(context, SingleClientActivity::class.java)
+                Toast.makeText(context, "$clickedClient", Toast.LENGTH_SHORT).show()
+                //  intent.putExtra("clickedClient", clickedClient)
+                // startActivity(intent)
             }
 
         })

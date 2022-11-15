@@ -12,6 +12,7 @@ class ProductionAdapter: RecyclerView.Adapter<ProductionAdapter.ProductionViewHo
 
     var production: List<Production> = ArrayList()
 
+
     class ProductionViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView){
         val tvProductionDate: TextView = itemView.findViewById(R.id.tvProductionDate)
