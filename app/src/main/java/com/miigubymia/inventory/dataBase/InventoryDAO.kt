@@ -99,7 +99,7 @@ interface InventoryDAO {
     @Update
     suspend fun updateProduction(production: Production)
 
-    @Query("SELECT * FROM production_table ORDER BY id ASC")
+    @Query("SELECT * FROM production_table ORDER BY productionID ASC")
     fun getAllProduction():Flow<List<Production>>
 
     // Relations

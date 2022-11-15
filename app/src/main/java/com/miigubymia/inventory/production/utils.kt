@@ -68,7 +68,7 @@ fun createList(list:MutableList<String>, productionAdapter:ProductionAdapter){
     val productionList = productionAdapter.production
     var loop = 0
     for (item in productionList){
-        var id = productionList[loop].id.toString()
+        var id = productionList[loop].productionID.toString()
         var date = productionList[loop].date
         var artisanName = productionList[loop].artisanName
         var productName = productionList[loop].productName
