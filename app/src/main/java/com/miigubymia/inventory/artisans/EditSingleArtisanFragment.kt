@@ -49,6 +49,7 @@ class EditSingleArtisanFragment : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_edit_single_artisan, container, false)
 
         var currentArtisan = activity?.intent?.getSerializableExtra("clickedArtisan") as Artisan
+        val currentID = currentArtisan.artisanID
 
         val cancelbtn = view.findViewById<Button>(R.id.btnCancelEdit)
         val confirmbtn = view.findViewById<Button>(R.id.btnEditConfirm)
@@ -87,6 +88,7 @@ class EditSingleArtisanFragment : DialogFragment() {
                 val pixrbtn = getRadioBtn()
                 val artisanPix:String = pixrbtn + editTextPix.text.toString()
                 val artisan = Artisan(editTextName.text.toString(),artisanPix,editTextPhone.text.toString(),result)
+                artisan.artisanID = currentID
                 artisanViewModel.updateArtisan(artisan)
                 dialog!!.dismiss()
                 Toast.makeText(context, "Atualizado", Toast.LENGTH_SHORT).show()

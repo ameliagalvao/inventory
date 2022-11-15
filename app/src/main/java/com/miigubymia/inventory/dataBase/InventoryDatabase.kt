@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
     Production::class,
     Products::class,
     Supplies::class
-                     ], version = 3)
+                     ], version = 4)
 abstract class InventoryDatabase: RoomDatabase() {
 
     abstract fun getInventoryDao():InventoryDAO
@@ -77,13 +77,39 @@ abstract class InventoryDatabase: RoomDatabase() {
             }
         }
 
+        val migration_3_4: Migration = object : Migration(3,4){
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE `new_artisan_table`(" +
+                        "`artisanName` TEXT NOT NULL," +
+                        "`artisanPix` TEXT NOT NULL," +
+                        "`artisanPhone` TEXT NOT NULL," +
+                        "`artisanSkills` TEXT NOT NULL," +
+                        "`artisanProduction` TEXT NOT NULL," +
+                        "`artisanID` INTEGER NOT NULL," +
+                        "PRIMARY KEY(`artisanID`))")
+                database.execSQL("DROP TABLE artisan_table")
+                database.execSQL("ALTER TABLE new_artisan_table RENAME TO artisan_table")
+                //PRODUCTS
+                database.execSQL("CREATE TABLE `new_products_table`(" +
+                        "`productName` TEXT NOT NULL," +
+                        "`productdesigner` TEXT NOT NULL," +
+                        "`productdescription` TEXT NOT NULL," +
+                        "`productHandWorkCost` INTEGER NOT NULL," +
+                        "`productAvailableInventory` INTEGER NOT NULL," +
+                        "`productID` INTEGER NOT NULL," +
+                        "PRIMARY KEY(`productID`))")
+                database.execSQL("DROP TABLE products_table")
+                database.execSQL("ALTER TABLE new_products_table RENAME TO products_table")
+            }
+        }
+
         fun getDatabase(context: Context, scope: CoroutineScope):InventoryDatabase{
             // só permite a criação de uma instância por vez.
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(context.applicationContext,
                 InventoryDatabase::class.java,"inventory_database")
                     .allowMainThreadQueries()
-                    .addMigrations(migration_1_2, migration_2_3)
+                    .addMigrations(migration_1_2, migration_2_3, migration_3_4)
                     .addCallback(InventoryDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
