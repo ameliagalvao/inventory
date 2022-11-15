@@ -52,64 +52,13 @@ class ProductionListFragment : Fragment() {
         recyclerView.adapter = productionAdapter
 
         btnRegister.setOnClickListener {
-            createList()
+            createList(productionListToSave, productionAdapter)
             val content = productionListToSave.joinToString(separator = "\n")
-            write(requireContext(), requireActivity(), content)
-            Toast.makeText(context, "Salvo.", Toast.LENGTH_LONG).show()
+            writeToExternalStorage(requireContext(), requireActivity(), content)
+            writeTextInInternalStorage(requireContext(), requireActivity(), content)
         }
 
         return view
-    }
-
-    fun write(context: Context, activity: Activity, content:String) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Permissão Necessária")
-            builder.setMessage("Para que o aplicativo possa salvar o registro, você precisa liberar a permissão de acesso aos arquivos.")
-            builder.setPositiveButton("Conceder permissão") { dialog, which ->
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE), 100)
-            }
-            builder.setNegativeButton("Cancelar") { dialog, which ->
-                Toast.makeText(context, "Permissão NÃO concedida", Toast.LENGTH_SHORT).show()
-            }
-            builder.show()
-        }else{
-            val externalDir = activity.applicationContext.getExternalFilesDir(null)
-            val file = File(externalDir, "registro_producao.txt")
-            try {
-                if (!file.exists()) {
-                    file.createNewFile()
-                }
-                val writer = FileWriter(file, true)
-                writer.use { it.write(content) }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun createList(){
-        productionListToSave.clear()
-        productionListToSave.add("ID da Produção,Data de Entrega,Nome do Artesao,Nome do Produto,Quantidade")
-        val productionList = productionAdapter.production
-        var loop = 0
-        for (item in productionList){
-            var id = productionList[loop].id.toString()
-            var date = productionList[loop].date
-            var artisanName = productionList[loop].artisanName
-            var productName = productionList[loop].productName
-            var quantity = productionList[loop].productionQuantity.toString()
-            var line = "$id,$date,$artisanName,$productName,$quantity"
-            productionListToSave.add(line)
-            loop += 1
-        }
     }
 
 }
